@@ -1,0 +1,31 @@
+@import '../config/_styles.scss';
+
+.navbar {
+    width: 100vw;
+    height: $navbar_height;
+    background-color: #212429;
+    color: white;
+
+    .navbar-title {
+        text-align: center;
+        height: 7vh;
+        font-size: calc((3vw + 3vh) / 2);
+    }
+
+    .navbar-title:hover {
+        cursor: pointer;
+    }
+
+    .navbar-links {
+        .navbar-link {
+            height: 7vh;
+            font-size: calc((2vw + 2vh) / 2);
+            padding: 1vh 2vw;
+        }
+
+        .navbar-link:hover, .active{
+            background-color: #15171a;
+            cursor: pointer;
+        }
+    }
+}

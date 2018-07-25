@@ -1,0 +1,13 @@
+$navbar_height:7vh;
+
+$content_height: 100vh - $navbar_height;
+$content_width: (100vw / 3) * 2;
+
+$card_header_body_ratio: (1 / 6);
+
+$big_card_width: $content_width / 4;
+$big_card_height: $content_height / 2.5 ;
+$big_card_margin: (($content_width / 3) - $big_card_width) / 2;
+
+$small_card_width: $content_width / 6; 
+$small_card_height: $content_height / 3 ;

@@ -1,0 +1,69 @@
+@import '../../config/_styles.scss';
+
+.anime-details-card {
+    .anime-details-card-header {
+        background-color: #2183b8;
+        border-radius: 1vw 1vw 0vw 0vw;
+        text-align: center;
+
+        span {
+            font-size: calc((2vw + 2vh) / 3);
+            color: #EFF1ED; 
+            font-weight: bold;
+        }
+    }
+
+    .anime-details-card-body {
+        background-color: #EFF1ED;
+        border-radius: 0vw 0vw 1vw 1vw;
+
+        .anime-details {
+            margin-top: 2vh;
+            text-align: center;
+
+            .title, .normal {
+                font-size: calc((2vw + 2vh) / 3);
+            }
+
+            .normal span:hover {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.anime-details-card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.anime-details-card.big {
+    $big_card_body_height:$big_card_height - ($big_card_height * $card_header_body_ratio);
+    margin: $big_card_margin;
+
+    .anime-details-card-header {
+        height: $big_card_height * $card_header_body_ratio;
+        width: $big_card_width;
+    }
+
+    .anime-details-card-body {
+        height: $big_card_body_height;
+        width: $big_card_width;
+    }
+
+    .anime-img {
+        height: ($big_card_body_height / 3) * 2;
+    }
+}
+
+.anime-details-card.small {
+    .anime-details-card-header {
+        height: $small_card_height * $card_header_body_ratio;
+        width: $small_card_width;
+    }
+
+    .anime-details-card-body {
+        height: $small_card_height - ($small_card_height * $card_header_body_ratio);
+        width: $small_card_width;
+    }
+}

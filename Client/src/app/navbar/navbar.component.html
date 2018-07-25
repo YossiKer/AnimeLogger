@@ -1,0 +1,14 @@
+<div class="navbar">
+    <table class="navbar-links">
+      <tbody>
+        <tr>
+          <td class="navbar-title">        
+            {{navbarMetadata.title}}
+          </td>
+          <td *ngFor="let link of navbarMetadata.links" class="navbar-link" [class.active]="currLink === link.title" (click)="currLink = link.title">
+            {{link.displayName}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+</div>
