@@ -1,39 +1,15 @@
 <div class="content">
-  <table>
-    <tbody>
-      <tr>
-        <td>
-            <app-anime-details-card size="big"></app-anime-details-card>
-        </td>
-        <td>
-            <app-anime-details-card size="big"></app-anime-details-card>
-        </td>
-        <td>
-            <app-anime-details-card size="big"></app-anime-details-card>
-        </td>
-      </tr>
-      <tr>
-          <td>
-              <app-anime-details-card size="big"></app-anime-details-card>
-          </td>
-          <td>
-              <app-anime-details-card size="big"></app-anime-details-card>
-          </td>
-          <td>
-              <app-anime-details-card size="big"></app-anime-details-card>
+  <app-content-header></app-content-header>
+  
+  <div id="content-data">
+    <table *ngIf="cardsRows">
+      <tbody>
+        <tr *ngFor="let cardsRow of cardsRows">
+          <td *ngFor="let card of cardsRow">
+            <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
           </td>
         </tr>
-        <tr>
-            <td>
-                <app-anime-details-card size="big"></app-anime-details-card>
-            </td>
-            <td>
-                <app-anime-details-card size="big"></app-anime-details-card>
-            </td>
-            <td>
-                <app-anime-details-card size="big"></app-anime-details-card>
-            </td>
-          </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>

@@ -5,8 +5,12 @@
     height: $content_height;
     width: $content_width;
     margin-left: (100vw / 3) / 2;
-    overflow-y: auto;
-    overflow-x: hidden;
+
+    #content-data {
+        height: $content_height * 0.9;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
 }
 
 ::-webkit-scrollbar{

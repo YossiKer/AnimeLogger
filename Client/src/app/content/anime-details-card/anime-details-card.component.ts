@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { UserAnime } from '../../Objects/UserAnime';
 
 @Component({
   selector: 'app-anime-details-card',
@@ -7,7 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class AnimeDetailsCardComponent implements OnInit {
 
-  @Input() size;
+  @Input() size: string;
+  @Input() userAnime: UserAnime;
 
   constructor() { }
 

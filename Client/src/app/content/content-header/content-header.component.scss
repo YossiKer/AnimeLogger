@@ -1,0 +1,80 @@
+@import '../../config/_styles.scss';
+
+#content-header {
+    height: $content_height * 0.1;
+    width: 100%;
+
+    background-color: #2183b8;
+
+    #search-anime-input {
+        height: $content_height * 0.1 * 0.7;
+        vertical-align: middle;
+    }
+
+    .left, .right {
+        padding: 1vh 1vw;
+        display: inline-block;
+        background-color: #2183b8;
+        height: $content_height * 0.1;
+        font-size: calc((4vw + 4vh) / 3);
+        color: #EFF1ED;
+        width: $content_width / 10;
+        border: #2183b8 1px solid;
+    }
+    
+    .highlight:hover, .clicked-select {
+        cursor: pointer;
+        color: #2183b8;
+        background-color: #EFF1ED;
+        border-bottom-color: #EFF1ED;
+    }
+
+    .right {
+        float: right;
+    }
+
+    .select-options {
+        z-index: 1;
+        position: absolute;
+        background-color: #EFF1ED;
+        color: #2183b8;
+        font-size: calc(1vw + 1vh);
+        padding: 1vh 0.5vw;
+        border: #2183b8 1px solid;
+        border-top-color: #EFF1ED;
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    .select-options div:hover, .clicked-option {
+        background-color: #2183b8;
+        color: #EFF1ED;
+        cursor: pointer;
+    }
+
+    .filter-select-options {
+        display: none;
+        margin-left: 0px;
+        width: $content_width / 5;
+    }
+
+    .sort-select-options {
+        display: none;
+        margin-left: $content_width / 10;
+        width: $content_width / 3;
+    }
+
+    .show {
+        display: block;
+    }
+
+    ::-webkit-scrollbar{
+        width: 0.5vw;
+    }  
+    
+    ::-webkit-scrollbar-thumb {
+        background: #c8ccd2; 
+        border-radius: 10px;
+    }
+    
+}
