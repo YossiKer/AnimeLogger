@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Category } from '../../Objects/Category';
-import { CategoriesService } from '../../Services/categories.service'
+import { Category } from '../../../Objects/Category';
+import { CategoriesService } from '../../../Services/categories.service'
 
 @Component({
   selector: 'app-content-header',
@@ -30,7 +30,7 @@ export class ContentHeaderComponent implements OnInit {
       'Watching Date (Latest to Earliest)'
     ]
 
-    this.currSortType = this.sortTypes[5];
+    this.currSortType = this.sortTypes[0];
     
     this.currSelect = '';
 

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AnimesService } from '../Services/animes.service';
-import { UsersService } from '../Services/users.service';
+import { AnimesService } from '../../Services/animes.service';
+import { UsersService } from '../../Services/users.service';
 
-import { Anime } from '../Objects/Anime';
-import { AnimeCategory } from '../Objects/AnimeCategory';
-import { Category } from '../Objects/Category';
-import { User } from '../Objects/User';
-import { UserAnime } from '../Objects/UserAnime';
+import { Anime } from '../../Objects/Anime';
+import { AnimeCategory } from '../../Objects/AnimeCategory';
+import { Category } from '../../Objects/Category';
+import { User } from '../../Objects/User';
+import { UserAnime } from '../../Objects/UserAnime';
 
 @Component({
   selector: 'app-content',
