@@ -17,19 +17,43 @@ export class ContentHeaderComponent implements OnInit {
 
   currSelect: string;
 
-  sortTypes: string[];
-  currSortType: string;
+  sortTypes: object[];
+  currSortType: object;
 
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
     this.sortTypes = [
-      'Anime Name (A - Z)',
-      'Anime Name (Z - A)',
-      'Update Date (Earliest to Latest)',
-      'Update Date (Latest to Earliest)',
-      'Watching Date (Earliest to Latest)',
-      'Watching Date (Latest to Earliest)'
+      {
+        attr: 'anime_name',
+        order: 'asc',
+        display: 'Anime Name (A - Z)'
+      },
+      {
+        attr: 'anime_name',
+        order: 'desc',
+        display: 'Anime Name (Z - A)'
+      },
+      {
+        attr: 'last_update_date',
+        order: 'asc',
+        display: 'Update Date (Earliest to Latest)'
+      },
+      {
+        attr: 'last_update_date',
+        order: 'desc',
+        display: 'Update Date (Latest to Earliest)'
+      },
+      {
+        attr: 'last_watch_date',
+        order: 'asc',
+        display: 'Watching Date (Earliest to Latest)'
+      },
+      {
+        attr: 'last_watch_date',
+        order: 'desc',
+        display: 'Watching Date (Latest to Earliest)'
+      }
     ]
 
     this.currSortType = this.sortTypes[0];
@@ -40,6 +64,7 @@ export class ContentHeaderComponent implements OnInit {
     this.categoriesService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
+        this.categories.sort((c1, c2) => {return c1.category_name.localeCompare(c2.category_name)});
 
         this.categoriesStatus = {};
         for (let category of categories) {
@@ -59,7 +84,7 @@ export class ContentHeaderComponent implements OnInit {
     this.filterChange.emit(this.categoriesStatus);
   }
 
-  handleSortChange(sortType: string): void {
+  handleSortChange(sortType: object): void {
     this.currSortType = sortType;
     this.sortChange.emit(this.currSortType);
   }

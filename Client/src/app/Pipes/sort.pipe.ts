@@ -2,12 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Anime } from '../Objects/Anime';
 
 @Pipe({
-  name: 'sort'
+  name: 'sort',
+  pure: false
 })
 export class SortPipe implements PipeTransform {
 
   transform(objectsList: object[], attr: string, type: string, order: string): object[] {
-    console.log(type);
     type = type?type:'string';
 
     let sortedList: object[] = objectsList;
@@ -27,7 +27,15 @@ export class SortPipe implements PipeTransform {
       sortedList = sortedList.reverse();
     }
 
-    return sortedList
+    return sortedList;
+  }
+
+  logObjectList(objectList) {
+    console.log('---------------------------------')
+    for (let object of objectList) {
+      console.log(object['anime_name']);
+    }
+    console.log('---------------------------------')
   }
 
 }

@@ -15,7 +15,7 @@
         <div *ngFor="let sortType of sortTypes" 
              (click)="handleSortChange(sortType)"
              [class.clicked-option]="currSortType === sortType">
-            <span>{{sortType}}</span>
+            <span>{{sortType.display}}</span>
         </div>
     </div>
     <div class="left">

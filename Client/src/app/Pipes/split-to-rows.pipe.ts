@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'splitToRows'
+  name: 'splitToRows',
+  pure: false
 })
 export class SplitToRowsPipe implements PipeTransform {
 

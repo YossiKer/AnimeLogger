@@ -4,7 +4,7 @@
   <div id="content-data">
     <table *ngIf="finishedLoadingAnimes">
       <tbody>
-        <tr *ngFor="let cardsRow of currUserAnimes | splitToRows: 3">
+        <tr *ngFor="let cardsRow of currUserAnimes | filter: currFilter: 'categories': 'array' | sort: currSortType.attr: 'string': currSortType.order | splitToRows: 3">
           <td *ngFor="let card of cardsRow">
             <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
           </td>
