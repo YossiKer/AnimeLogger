@@ -19,6 +19,9 @@ export class ContentComponent implements OnInit {
   maxCardsInRow: number = 3;
   cardsRows: UserAnime[][] = [];
 
+  currSortType: string;
+  currFilter: object;
+
   currUserAnimes: UserAnime[];
 
   constructor(private animesService: AnimesService,
@@ -43,5 +46,13 @@ export class ContentComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  handleFilterChange(newFilter: object): void {
+    this.currFilter = newFilter;
+  }
+
+  handleSortChange(newSortType: string): void {
+    this.currSortType = newSortType;
   }
 }

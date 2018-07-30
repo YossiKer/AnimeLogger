@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Category } from '../../../Objects/Category';
 import { CategoriesService } from '../../../Services/categories.service'
 
@@ -8,6 +8,9 @@ import { CategoriesService } from '../../../Services/categories.service'
   styleUrls: ['./content-header.component.scss']
 })
 export class ContentHeaderComponent implements OnInit {
+
+  @Output() filterChange = new EventEmitter();
+  @Output() sortChange = new EventEmitter();
 
   categories: Category[];
   categoriesStatus: object;
@@ -20,7 +23,6 @@ export class ContentHeaderComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
-
     this.sortTypes = [
       'Anime Name (A - Z)',
       'Anime Name (Z - A)',
@@ -31,7 +33,8 @@ export class ContentHeaderComponent implements OnInit {
     ]
 
     this.currSortType = this.sortTypes[0];
-    
+    this.sortChange.emit(this.currSortType);
+
     this.currSelect = '';
 
     this.categoriesService.getCategories().subscribe(
@@ -42,6 +45,8 @@ export class ContentHeaderComponent implements OnInit {
         for (let category of categories) {
           this.categoriesStatus[category.category_name] = false;
         }
+
+        this.filterChange.emit(this.categoriesStatus);
       },
       (error) => {
         console.log(error);
@@ -49,9 +54,14 @@ export class ContentHeaderComponent implements OnInit {
     );
   }
 
-  handleChange(categoryName: string): void {
+  handleCategoryChange(categoryName: string): void {
     this.categoriesStatus[categoryName] = !this.categoriesStatus[categoryName];
-    console.log(this.categoriesStatus);
+    this.filterChange.emit(this.categoriesStatus);
+  }
+
+  handleSortChange(sortType: string): void {
+    this.currSortType = sortType;
+    this.sortChange.emit(this.currSortType);
   }
 
   handleSelectSelection(selectTitle: string): void {

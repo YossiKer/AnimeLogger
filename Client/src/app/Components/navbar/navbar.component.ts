@@ -16,7 +16,6 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.currLink = this.navbarMetadata.links[0].title;
-    console.log(this.currLink);
   }
 
 }
