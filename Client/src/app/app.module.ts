@@ -13,6 +13,8 @@ import { UsersService } from './Services/users.service';
 import { CategoriesService } from './Services/categories.service';
 
 import { SortPipe } from './Pipes/sort.pipe';
+import { FilterPipe } from './Pipes/filter.pipe';
+import { SplitToRowsPipe } from './Pipes/split-to-rows.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { SortPipe } from './Pipes/sort.pipe';
     ContentComponent,
     AnimeDetailsCardComponent,
     ContentHeaderComponent,
-    SortPipe
+    SortPipe,
+    FilterPipe,
+    SplitToRowsPipe
   ],
   imports: [
     BrowserModule,

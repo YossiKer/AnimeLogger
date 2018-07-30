@@ -2,10 +2,10 @@
   <app-content-header (filterChange)="handleFilterChange($event)" (sortChange)="handleSortChange($event)"></app-content-header>
   
   <div id="content-data">
-    <table *ngIf="cardsRows">
+    <table *ngIf="currUserAnimes">
       <tbody>
-        <tr *ngFor="let cardsRow of cardsRows">
-          <td *ngFor="let card of cardsRow|sort: 'Anime Name (A - Z)'">
+        <tr *ngFor="let cardsRow of currUserAnimes | splitToRows: 3">
+          <td *ngFor="let card of cardsRow">
             <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
           </td>
         </tr>

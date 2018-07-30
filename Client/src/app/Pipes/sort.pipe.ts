@@ -6,24 +6,25 @@ import { Anime } from '../Objects/Anime';
 })
 export class SortPipe implements PipeTransform {
 
-  transform(animesList: Anime[], sortType: string): Anime[] {
-    let sortedList: Anime[] = animesList;
+  transform(objectsList: object[], attr: string, type: string, order: string): object[] {
+    console.log(type);
+    type = type?type:'string';
 
-    switch(sortType) {
-      case 'Anime Name (A - Z)':
-        sortedList.sort((anime1, anime2) => {return anime1.anime_name.localeCompare(anime2.anime_name)});
+    let sortedList: object[] = objectsList;
+
+    switch(type.toUpperCase()) {
+      case 'STRING':
+        sortedList.sort((o1, o2) => (o1[attr].localeCompare(o2[attr])));
+        break;
+      case 'NUMBER':
+        sortedList.sort((o1, o2) => (o1[attr] - o2[attr]));
+        break;
+      case 'DATE':
       break;
-      case 'Anime Name (Z - A)':
-        sortedList.sort((anime1, anime2) => {return anime2.anime_name.localeCompare(anime1.anime_name)});
-      break;
-      case 'Update Date (Earliest to Latest)':
-      break;
-      case 'Update Date (Latest to Earliest)':
-      break;
-      case 'Watching Date (Earliest to Latest)':
-      break;
-      case 'Watching Date (Latest to Earliest)':
-      break;
+    }
+
+    if (order === 'desc') {
+      sortedList = sortedList.reverse();
     }
 
     return sortedList

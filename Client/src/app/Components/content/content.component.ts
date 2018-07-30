@@ -23,7 +23,7 @@ export class ContentComponent implements OnInit {
   currFilter: object;
 
   currUserAnimes: UserAnime[];
-
+  
   constructor(private animesService: AnimesService,
               private usersService: UsersService) { }
 
@@ -31,16 +31,6 @@ export class ContentComponent implements OnInit {
     this.usersService.getUserAnimes('YossiK').subscribe(
       (userAnimes: UserAnime[]) => {
         this.currUserAnimes = userAnimes;
-
-        let cardIndex: number = 0;
-        for(let currUserAnime of this.currUserAnimes) {
-          let cardRowIndex = Math.floor(cardIndex / this.maxCardsInRow);
-          if (!this.cardsRows[cardRowIndex]) {
-            this.cardsRows.push([]);
-          }
-          this.cardsRows[cardRowIndex].push(currUserAnime);
-          cardIndex++;
-        }
       }, 
       (error: Error) => {
         console.log(error);
