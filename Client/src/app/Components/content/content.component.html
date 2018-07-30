@@ -2,7 +2,7 @@
   <app-content-header (filterChange)="handleFilterChange($event)" (sortChange)="handleSortChange($event)"></app-content-header>
   
   <div id="content-data">
-    <table *ngIf="currUserAnimes">
+    <table *ngIf="finishedLoadingAnimes">
       <tbody>
         <tr *ngFor="let cardsRow of currUserAnimes | splitToRows: 3">
           <td *ngFor="let card of cardsRow">

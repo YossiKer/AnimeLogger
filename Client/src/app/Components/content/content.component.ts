@@ -24,13 +24,37 @@ export class ContentComponent implements OnInit {
 
   currUserAnimes: UserAnime[];
   
+  loadedAnimes: number;
+  finishedLoadingAnimes: boolean;
+
   constructor(private animesService: AnimesService,
               private usersService: UsersService) { }
 
   ngOnInit() {
+    this.finishedLoadingAnimes = false;
     this.usersService.getUserAnimes('YossiK').subscribe(
       (userAnimes: UserAnime[]) => {
         this.currUserAnimes = userAnimes;
+        this.loadedAnimes = 0;
+        for (let anime of this.currUserAnimes) {
+          anime['categories'] = [];
+          this.animesService.getAnimeCategories(anime.anime_name).subscribe(
+            (categories: Category[]) => {
+              for (let category of categories) {
+                anime['categories'].push(category.category_name);
+              }
+
+              this.loadedAnimes++;
+              this.finishedLoadingAnimes = this.currUserAnimes.length === this.loadedAnimes;
+              if (this.finishedLoadingAnimes) {
+                console.log(this.currUserAnimes);
+              }
+            },
+            (error: Error) => {
+              console.log(error);
+            }
+          );
+        }
       }, 
       (error: Error) => {
         console.log(error);
