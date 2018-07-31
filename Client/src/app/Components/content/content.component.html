@@ -1,10 +1,12 @@
 <div class="content">
-  <app-content-header (filterChange)="handleFilterChange($event)" (sortChange)="handleSortChange($event)"></app-content-header>
+  <app-content-header (filterChange)="handleFilterChange($event)" 
+                      (sortChange)="handleSortChange($event)"
+                      (searchInputChange)="handleSearchInputChange($event)"></app-content-header>
   
   <div id="content-data">
     <table *ngIf="finishedLoadingAnimes">
       <tbody>
-        <tr *ngFor="let cardsRow of currUserAnimes | filter: currFilter: 'categories': 'array' | sort: currSortType.attr: 'string': currSortType.order | splitToRows: 3">
+        <tr *ngFor="let cardsRow of currUserAnimes | filter: currFilter: 'categories': 'array' | filter: currSearchInput: 'anime_name': 'content' | sort: currSortType.attr: 'string': currSortType.order | splitToRows: 3">
           <td *ngFor="let card of cardsRow">
             <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
           </td>

@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="left">
-        <input id="search-anime-input" type="text" placeholder="Search anime...">
+        <input #searchInput id="search-anime-input" type="text" placeholder="Search anime..." (input)="handelSearchInuptChange(searchInput.value)">
     </div>
     <div class="right highlight">add</div>
 </div>

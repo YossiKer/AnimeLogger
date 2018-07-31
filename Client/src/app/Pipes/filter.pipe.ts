@@ -9,7 +9,12 @@ export class FilterPipe implements PipeTransform {
   transform(objectList: object[], filters: object, attr: string, type: string): any {
     let filteredList = [];
 
-    if (this.checkNoFilters(filters)) {
+    console.log(objectList);
+    console.log(filters);
+    console.log(attr);
+    console.log(type);
+
+    if (this.checkNoFilters(filters) && type !== 'content') {
       return objectList;
     }
 
@@ -43,6 +48,12 @@ export class FilterPipe implements PipeTransform {
           }
         }
         break;
+      case 'content':
+        for (let object of objectList) {
+          if (object[attr].toUpperCase().indexOf(filters['searchInput'].toUpperCase()) !== -1) {
+            filteredList.push(object);
+          }
+        }
     }
 
     return filteredList;

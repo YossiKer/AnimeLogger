@@ -21,6 +21,7 @@ export class ContentComponent implements OnInit {
 
   currSortType: string;
   currFilter: object;
+  currSearchInput: object;
 
   currUserAnimes: UserAnime[];
   
@@ -68,5 +69,9 @@ export class ContentComponent implements OnInit {
 
   handleSortChange(newSortType: string): void {
     this.currSortType = newSortType;
+  }
+
+  handleSearchInputChange(newSearchInput: object): void {
+    this.currSearchInput = newSearchInput;
   }
 }

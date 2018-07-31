@@ -11,6 +11,7 @@ export class ContentHeaderComponent implements OnInit {
 
   @Output() filterChange = new EventEmitter();
   @Output() sortChange = new EventEmitter();
+  @Output() searchInputChange = new EventEmitter();
 
   categories: Category[];
   categoriesStatus: object;
@@ -23,6 +24,12 @@ export class ContentHeaderComponent implements OnInit {
   constructor(private categoriesService: CategoriesService) { }
 
   ngOnInit() {
+    this.searchInputChange.emit(
+      {
+        searchInput: ''
+      }
+    );
+
     this.sortTypes = [
       {
         attr: 'anime_name',
@@ -95,5 +102,13 @@ export class ContentHeaderComponent implements OnInit {
     } else {
       this.currSelect = selectTitle;
     }
+  }
+
+  handelSearchInuptChange(searchInput) {
+    let searchInputFilter = {
+      searchInput: searchInput
+    };
+
+    this.searchInputChange.emit(searchInputFilter);
   }
 }
