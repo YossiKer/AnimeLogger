@@ -9,11 +9,6 @@ export class FilterPipe implements PipeTransform {
   transform(objectList: object[], filters: object, attr: string, type: string): any {
     let filteredList = [];
 
-    console.log(objectList);
-    console.log(filters);
-    console.log(attr);
-    console.log(type);
-
     if (this.checkNoFilters(filters) && type !== 'content') {
       return objectList;
     }

@@ -2,7 +2,6 @@
   <app-content-header (filterChange)="handleFilterChange($event)" 
                       (sortChange)="handleSortChange($event)"
                       (searchInputChange)="handleSearchInputChange($event)"></app-content-header>
-  
   <div id="content-data">
     <table *ngIf="finishedLoadingAnimes">
       <tbody>
@@ -10,6 +9,9 @@
           <td *ngFor="let card of cardsRow">
             <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
           </td>
+        </tr>
+        <tr>
+          <app-modal></app-modal>
         </tr>
       </tbody>
     </table>

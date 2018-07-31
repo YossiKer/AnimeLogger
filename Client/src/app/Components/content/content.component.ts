@@ -47,9 +47,6 @@ export class ContentComponent implements OnInit {
 
               this.loadedAnimes++;
               this.finishedLoadingAnimes = this.currUserAnimes.length === this.loadedAnimes;
-              if (this.finishedLoadingAnimes) {
-                console.log(this.currUserAnimes)
-              }
             },
             (error: Error) => {
               console.log(error);
