@@ -1,9 +1,53 @@
 .app-modal {
     height: 50vh;
     width: 50vw;
-    background-color: white;
     z-index: 10;
     position: absolute;
     left: 25vw;
-    top: 25vh;
+    top: 25vh; 
+    color: #EFF1ED;
+    font-size: calc((4vw + 4vh) / 3);
+    text-align: center;
+
+    .app-modal-header {
+        width: 50vw;
+        height: 10vh;
+        background-color: #2183b8;
+        border: 1px #EFF1ED solid;
+    }
+
+    .app-modal-body {
+        width: 50vw;
+        height: 40vh;
+        background-color: #EFF1ED;
+        border: 1px #2183b8 solid;
+
+        .app-modal-image {
+            float: left;
+            background-color: red;
+            height: 40vh;
+            width: 15vw;
+        }
+
+        .app-modal-details {
+            text-align: left;
+            float: left;
+            background-color: #EFF1ED;
+            color: #212429;
+            height: 40vh;
+            width: 34.8vw;
+            word-wrap: break-word;
+            overflow-y: auto;
+            font-size: calc((2vw + 2vh) / 2);
+        }
+    }
+}
+
+::-webkit-scrollbar{
+    width: 0.5vw;
+}  
+
+::-webkit-scrollbar-thumb {
+    background: #c8ccd2; 
+    border-radius: 10px;
 }
