@@ -7,7 +7,7 @@ import { NavbarComponent } from './Components/navbar/navbar.component';
 import { ContentComponent } from './Components/content/content.component';
 import { AnimeDetailsCardComponent } from './Components/content/anime-details-card/anime-details-card.component';
 import { ContentHeaderComponent } from './Components/content/content-header/content-header.component';
-import { ModalComponent } from './Components/modal/modal.component';
+import { AnimeDetailsModalComponent } from './Components/anime-details-modal/anime-details-modal.component';
 
 import { AnimesService } from './Services/animes.service';
 import { UsersService } from './Services/users.service';
@@ -24,7 +24,7 @@ import { SplitToRowsPipe } from './Pipes/split-to-rows.pipe';
     ContentComponent,
     AnimeDetailsCardComponent,
     ContentHeaderComponent,
-    ModalComponent,
+    AnimeDetailsModalComponent,
     SortPipe,
     FilterPipe,
     SplitToRowsPipe

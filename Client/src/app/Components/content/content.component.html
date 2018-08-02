@@ -7,11 +7,11 @@
       <tbody>
         <tr *ngFor="let cardsRow of currUserAnimes | filter: currFilter: 'categories': 'array' | filter: currSearchInput: 'anime_name': 'content' | sort: currSortType.attr: 'string': currSortType.order | splitToRows: 3">
           <td *ngFor="let card of cardsRow">
-            <app-anime-details-card size="big" [userAnime]="card"></app-anime-details-card>
+            <app-anime-details-card size="big" [userAnime]="card" (animeClicked)="handleAnimeClick($event)"></app-anime-details-card>
           </td>
         </tr>
         <tr>
-          <app-modal></app-modal>
+          <app-modal *ngIf="modalState > 0" [animeDetails]="clickedAnime" (modalClosed)="closeModal()"></app-modal>
         </tr>
       </tbody>
     </table>

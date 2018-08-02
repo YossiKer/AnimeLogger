@@ -1,4 +1,4 @@
-<div class="anime-details-card" [ngClass]="{'big': size === 'big', 'small': size === 'small'}">
+<div (click)="handleClick()" class="anime-details-card" [ngClass]="{'big': size === 'big', 'small': size === 'small'}">
   <div class="anime-details-card-header">
     <span>{{userAnime.anime_name}}</span>
   </div>

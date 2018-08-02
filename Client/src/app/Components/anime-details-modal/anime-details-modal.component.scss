@@ -14,6 +14,15 @@
         height: 10vh;
         background-color: #2183b8;
         border: 1px #EFF1ED solid;
+
+        span {
+            float: right;
+            margin-right: 1vw;
+        }
+
+        span:hover {
+            cursor: pointer;
+        }
     }
 
     .app-modal-body {
@@ -34,11 +43,12 @@
             float: left;
             background-color: #EFF1ED;
             color: #212429;
-            height: 40vh;
-            width: 34.8vw;
+            height: 39vh;
+            width: 34vw;
             word-wrap: break-word;
             overflow-y: auto;
             font-size: calc((2vw + 2vh) / 2);
+            margin-left: 0.5vw;
         }
     }
 }

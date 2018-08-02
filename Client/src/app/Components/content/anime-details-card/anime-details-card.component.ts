@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UserAnime } from '../../../Objects/UserAnime';
 
 @Component({
@@ -8,6 +8,8 @@ import { UserAnime } from '../../../Objects/UserAnime';
 })
 export class AnimeDetailsCardComponent implements OnInit {
 
+  @Output() animeClicked = new EventEmitter();
+
   @Input() size: string;
   @Input() userAnime: UserAnime;
 
@@ -16,4 +18,7 @@ export class AnimeDetailsCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleClick(): void {
+    this.animeClicked.emit(this.userAnime);
+  }
 }

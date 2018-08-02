@@ -28,10 +28,20 @@ export class ContentComponent implements OnInit {
   loadedAnimes: number;
   finishedLoadingAnimes: boolean;
 
+  clickedAnime: UserAnime;
+
+  currModal: any;
+  modalState: number;
+
   constructor(private animesService: AnimesService,
               private usersService: UsersService) { }
 
+  ngAfterViewChecked() {
+    this.currModal = document.getElementsByClassName('app-modal')[0];
+  }
+
   ngOnInit() {
+    this.modalState == 0;
     this.finishedLoadingAnimes = false;
     this.usersService.getUserAnimes('YossiK').subscribe(
       (userAnimes: UserAnime[]) => {
@@ -58,6 +68,20 @@ export class ContentComponent implements OnInit {
         console.log(error);
       }
     );
+
+    window.onclick = (event) => {
+      let found = false;
+
+      for (let elementIndex = 0; elementIndex < event['path'].length && !found; elementIndex++) {
+        if (event['path'][elementIndex] === this.currModal) {
+          found = true;
+        }
+      }
+
+      if (!found) {
+        this.modalState = this.modalState === 0 ? 0 : this.modalState - 1;
+      }
+    };
   }
 
   handleFilterChange(newFilter: object): void {
@@ -70,5 +94,14 @@ export class ContentComponent implements OnInit {
 
   handleSearchInputChange(newSearchInput: object): void {
     this.currSearchInput = newSearchInput;
+  }
+
+  handleAnimeClick(anime: UserAnime): void {
+      this.clickedAnime = anime;
+      this.modalState = 2;
+  }
+
+  closeModal() {
+    this.modalState = 0;
   }
 }
