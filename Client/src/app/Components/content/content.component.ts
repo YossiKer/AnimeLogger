@@ -33,6 +33,8 @@ export class ContentComponent implements OnInit {
   currModal: any;
   modalState: number;
 
+  addingAnime: boolean;
+
   constructor(private animesService: AnimesService,
               private usersService: UsersService) { }
 
@@ -41,6 +43,7 @@ export class ContentComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.addingAnime = false;
     this.modalState == 0;
     this.finishedLoadingAnimes = false;
     this.usersService.getUserAnimes('YossiK').subscribe(
@@ -101,7 +104,11 @@ export class ContentComponent implements OnInit {
       this.modalState = 2;
   }
 
-  closeModal() {
+  closeModal(): void {
     this.modalState = 0;
+  }
+
+  handleAnimeAddition(): void {
+    this.addingAnime = !this.addingAnime;
   }
 }

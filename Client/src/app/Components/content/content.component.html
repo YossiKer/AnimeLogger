@@ -1,7 +1,9 @@
 <div class="content">
   <app-content-header (filterChange)="handleFilterChange($event)" 
                       (sortChange)="handleSortChange($event)"
-                      (searchInputChange)="handleSearchInputChange($event)"></app-content-header>
+                      (searchInputChange)="handleSearchInputChange($event)"
+                      (addingAnime)="handleAnimeAddition()"></app-content-header>
+  <app-add-anime-form *ngIf="addingAnime"></app-add-anime-form>
   <div id="content-data">
     <table *ngIf="finishedLoadingAnimes">
       <tbody>

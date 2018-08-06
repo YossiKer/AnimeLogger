@@ -1,0 +1,17 @@
+<div class="add-anime-form">
+    <form [formGroup]="animeAdditionForm" (ngSubmit)="sendAddedAnime()">
+        <label>
+            Anime Name :
+            <select formControlName="anime_name">
+                <option value="qwer">qwer</option>
+                <option value="asdf">asdf</option>
+                <option value="zxcv">zxcv</option>
+            </select>
+        </label>
+        <label for="">
+            Current Episode :
+            <input type="number" formControlName="current_episode">
+        </label>
+        <button type='submit'>add</button>
+     </form>
+</div>

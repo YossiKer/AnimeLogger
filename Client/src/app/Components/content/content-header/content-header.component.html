@@ -21,7 +21,7 @@
     <div class="left">
         <input #searchInput id="search-anime-input" type="text" placeholder="Search anime..." (input)="handelSearchInuptChange(searchInput.value)">
     </div>
-    <div class="right highlight add-anime">
+    <div [ngClass]="{'right': true, 'highlight': true, 'add-anime': true, 'clicked-select': adding}" (click)="handleAnimeAddition()">
         +
     </div>
 </div>

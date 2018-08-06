@@ -12,6 +12,7 @@ export class ContentHeaderComponent implements OnInit {
   @Output() filterChange = new EventEmitter();
   @Output() sortChange = new EventEmitter();
   @Output() searchInputChange = new EventEmitter();
+  @Output() addingAnime = new EventEmitter();
 
   categories: Category[];
   categoriesStatus: object;
@@ -20,6 +21,8 @@ export class ContentHeaderComponent implements OnInit {
 
   sortTypes: object[];
   currSortType: object;
+
+  adding: boolean;
 
   constructor(private categoriesService: CategoriesService) { }
 
@@ -68,6 +71,8 @@ export class ContentHeaderComponent implements OnInit {
 
     this.currSelect = '';
 
+    this.adding = false;
+
     this.categoriesService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
@@ -110,5 +115,10 @@ export class ContentHeaderComponent implements OnInit {
     };
 
     this.searchInputChange.emit(searchInputFilter);
+  }
+
+  handleAnimeAddition() {
+    this.adding = !this.adding;
+    this.addingAnime.emit();
   }
 }
