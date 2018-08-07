@@ -2,15 +2,17 @@
     <form [formGroup]="animeAdditionForm" (ngSubmit)="sendAddedAnime()">
         <label>
             Anime Name :
-            <select formControlName="anime_name">
-                <option value="qwer">qwer</option>
-                <option value="asdf">asdf</option>
-                <option value="zxcv">zxcv</option>
+            <select formControlName="anime_name" #addedAnimeName>
+                <option *ngFor="let anime of animes" value="{{anime.anime_name}}">{{anime.anime_name}}</option>
             </select>
         </label>
         <label for="">
             Current Episode :
             <input type="number" formControlName="current_episode">
+        </label>
+        <label>
+            Have you seen the latest episode?
+            <input type="checkbox" formControlName="seen_latest_episode" [checked]="seenLatestEpisode" (change)="checkboxChanged(addedAnimeName.value)">
         </label>
         <button type='submit'>add</button>
      </form>
