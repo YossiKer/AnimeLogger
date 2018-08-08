@@ -5,4 +5,27 @@
     width: $content_width;
     background-color: #EFF1ED;
     color: black;
+
+    form {
+        height: $content_height * 0.3;
+        width: $content_width * 0.8;
+        margin: 0 auto;
+
+        table {
+            width: $content_width * 0.8;
+            height: $content_height * 0.3;
+
+            td {
+                width: $content_width * 0.4;
+
+                button {
+                    background-color: #2183b8;
+                    color: #EFF1ED;
+                    border: 0px;
+                    width: 8vw;
+                    height: 5vh;
+                }
+            }
+        }
+    }
 }

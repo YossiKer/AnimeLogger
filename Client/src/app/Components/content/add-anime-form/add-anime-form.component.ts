@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Anime } from '../../../Objects/Anime';
 import { AnimesService } from '../../../Services/animes.service';
+import { UsersService } from '../../../Services/users.service';
+import { UserAnime } from '../../../Objects/UserAnime';
 
 @Component({
   selector: 'app-add-anime-form',
@@ -20,15 +22,34 @@ export class AddAnimeFormComponent implements OnInit {
 
   animes: Anime[];
 
-  constructor(private fb: FormBuilder, private animesService: AnimesService) { }
+  constructor(private fb: FormBuilder, 
+              private animesService: AnimesService,
+              private usersService: UsersService) { }
 
   ngOnInit() {
     this.seenLatestEpisode = false;
+    this.loadSelectAnimes();
+  }
 
+  loadSelectAnimes(): void {
     this.animesService.getAnimes().subscribe(
       (animes: Anime[]) => {
-        this.animes = animes;
-        console.log(this.animes);
+        this.usersService.getUserAnimes('YossiK').subscribe(
+          (userAnimes: Anime[]) => {
+            this.animes = [];
+
+            for (let anime of animes) {
+              if (!userAnimes.find(userAnime => userAnime.anime_name === anime.anime_name)) {
+                this.animes.push(anime);
+              }
+            }
+
+            console.log(this.animes)
+          },
+          (error) => {
+            console.log(error)
+          }
+        );
       }, 
       (error) => {
         console.log(error);
@@ -37,10 +58,43 @@ export class AddAnimeFormComponent implements OnInit {
   }
 
   sendAddedAnime() {
-    console.log(this.animeAdditionForm.value);
+    let latestEpisode: FormControl = (this.animeAdditionForm.get('current_episode') as FormControl);
+    latestEpisode.enable();
+
+    const formValue = this.animeAdditionForm.value;
+
+    let newAnime: UserAnime = (this.animes.find(anime => anime.anime_name === formValue.anime_name) as UserAnime);
+
+    newAnime.username = 'YossiK';
+    newAnime.current_episode = formValue.current_episode;
+    
+    this.usersService.addUserAnime(newAnime).subscribe(
+      (status) => {
+        if (status) {
+          this.loadSelectAnimes();
+        } else {
+          console.log('could not add the anime');
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+    this.initForm();
   }
 
-  checkboxChanged(animeName: string) {
+  animeSelectChanged(animeName: string): void {
+    let seenLatestEpisode: FormControl = (this.animeAdditionForm.get('seen_latest_episode') as FormControl);
+    let latestEpisode: FormControl = (this.animeAdditionForm.get('current_episode') as FormControl);
+
+    seenLatestEpisode.setValue(false);
+    
+    latestEpisode.setValue('');
+    latestEpisode.enable();
+  }
+
+  checkboxChanged(animeName: string): void {
     this.seenLatestEpisode = !this.seenLatestEpisode;
 
     let control: FormControl = (<FormControl>this.animeAdditionForm.get('current_episode'));
@@ -53,5 +107,11 @@ export class AddAnimeFormComponent implements OnInit {
     } else {
       control.enable();
     }
+  }
+
+  initForm() {
+    (this.animeAdditionForm.get('anime_name') as FormControl).setValue('');
+    (this.animeAdditionForm.get('current_episode') as FormControl).setValue('');
+    (this.animeAdditionForm.get('seen_latest_episode') as FormControl).setValue(false);
   }
 }

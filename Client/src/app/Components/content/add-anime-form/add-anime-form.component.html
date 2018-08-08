@@ -1,19 +1,39 @@
 <div class="add-anime-form">
     <form [formGroup]="animeAdditionForm" (ngSubmit)="sendAddedAnime()">
-        <label>
-            Anime Name :
-            <select formControlName="anime_name" #addedAnimeName>
-                <option *ngFor="let anime of animes" value="{{anime.anime_name}}">{{anime.anime_name}}</option>
-            </select>
-        </label>
-        <label for="">
-            Current Episode :
-            <input type="number" formControlName="current_episode">
-        </label>
-        <label>
-            Have you seen the latest episode?
-            <input type="checkbox" formControlName="seen_latest_episode" [checked]="seenLatestEpisode" (change)="checkboxChanged(addedAnimeName.value)">
-        </label>
-        <button type='submit'>add</button>
+        <table>
+            <tr>
+                <td>
+                    <div>
+                        Anime Name :
+                    </div>
+                    <select formControlName="anime_name" #addedAnimeName (change)="animeSelectChanged(addedAnimeName.value)">
+                        <option *ngFor="let anime of animes" value="{{anime.anime_name}}">{{anime.anime_name}}</option>
+                    </select>
+                </td>
+                <td>
+                    <div>
+                        <div>
+                            Current Episode :
+                        </div>
+                        <input type="number" formControlName="current_episode">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <label>
+                        Have you seen the latest episode?
+                        <input type="checkbox" formControlName="seen_latest_episode" [checked]="seenLatestEpisode" (change)="checkboxChanged(addedAnimeName.value)">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type='submit'>add</button>
+                </td>
+            </tr>
+        </table>
+        
      </form>
 </div>
